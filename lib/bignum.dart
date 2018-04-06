@@ -5,18 +5,8 @@ import 'src/big_integer_v8.dart';
 import 'src/big_integer_dartvm.dart';
 
 abstract class BigInteger {
-  static bool _useJsBigint = (){
-    if (0.0 is int) {
-      return true;
-    }
-    try {
-      // make sure the sdk support modInverse
-      return 3.modInverse(7) == -1;
-    }catch(err) {
-      return true;
-    }
-    return false;
-  }();
+  static bool _useJsBigint = true;
+  
   static BigInteger get ZERO {
     if (_useJsBigint) {
       return BigIntegerV8.nbv(0);
